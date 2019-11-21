@@ -33,7 +33,6 @@ module.exports = {
 
   entry: {
     test: 'test/index.js',
-    'test-browser': 'test/browser.js',
-    size: 'test/size/import-nothing.js'
+    'test-browser': 'test/browser.js'
   }
 };

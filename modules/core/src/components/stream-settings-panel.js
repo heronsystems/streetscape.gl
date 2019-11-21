@@ -76,13 +76,15 @@ export function createFormData(metadata, opts) {
       siblings = root[parentKey].children;
     }
 
+    let primitive_type = metadata[streamName].primitive_type ? metadata[streamName].primitive_type.toLowerCase() : undefined;
+    let scalar_type = metadata[streamName].scalar_type ? metadata[streamName].scalar_type.toLowerCase() : undefined;
     siblings[streamName] = {
       type: 'checkbox',
       title: streamName.replace(parentKey, ''),
       badge: (
         <Badge
           userStyle={style.badge}
-          type={metadata[streamName].primitive_type || metadata[streamName].scalar_type}
+          type={primitive_type || scalar_type}
         />
       )
     };

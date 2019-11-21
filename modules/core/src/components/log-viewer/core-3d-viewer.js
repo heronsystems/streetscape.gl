@@ -269,7 +269,6 @@ export default class Core3DViewer extends PureComponent {
           const stream = lookAheads[streamName] || streams[streamName];
           const coordinateProps = resolveCoordinateTransform(
             frame,
-            streamName,
             streamsMetadata[streamName],
             getTransformMatrix
           );
@@ -318,7 +317,6 @@ export default class Core3DViewer extends PureComponent {
             additionalProps,
             resolveCoordinateTransform(
               frame,
-              props.streamName,
               streamsMetadata[props.streamName],
               getTransformMatrix
             ),
@@ -330,7 +328,7 @@ export default class Core3DViewer extends PureComponent {
           // Apply log-specific coordinate props
           Object.assign(
             additionalProps,
-            resolveCoordinateTransform(frame, null, props, getTransformMatrix)
+            resolveCoordinateTransform(frame, props, getTransformMatrix)
           );
         } else {
           return layer;

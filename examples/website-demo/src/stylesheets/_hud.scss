@@ -6,18 +6,10 @@
   padding: 12px 8px;
 
   .hud-column {
-    width: 108px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .autonomy-state {
-    font-size: 12px;
-    width: 92px;
-    text-align: center;
-    text-transform: capitalize;
-    padding: 4px 0;
   }
 }

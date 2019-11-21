@@ -133,6 +133,7 @@ export const TOOLBAR_MENU_STYLE = {
   arrowSize: 0,
   borderWidth: 0,
   body: {
+    top: -60,
     left: 56,
     boxShadow: 'none'
   }
@@ -283,13 +284,14 @@ export const XVIZ_PANEL_STYLE = {
     selector: {
       wrapper: {
         position: 'absolute',
-        width: 160,
+        width: 320,
         top: 0,
         left: '50%',
         transform: 'translateX(-50%)'
       },
       select: {
-        fontSize: 14
+        fontSize: 14,
+        textAlignLast: 'center'
       },
       border: {
         border: 'none'

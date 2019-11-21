@@ -20,7 +20,8 @@
 import {CarMesh} from 'streetscape.gl';
 
 /* eslint-disable camelcase */
-export const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
+// export const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
+export const MAPBOX_TOKEN = 'pk.eyJ1IjoicGF0bm9sYW4zMyIsImEiOiJjaWprYWdxeTYwMzE2dHlsdGlnem5udWdjIn0.J9NzfFEQYACy70DmYcQsaA'; // eslint-disable-line
 
 export const MAP_STYLE = 'mapbox://styles/mapbox/light-v9';
 

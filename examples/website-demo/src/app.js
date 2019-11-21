@@ -40,7 +40,7 @@ import {UI_THEME} from './custom-styles';
 
 import './stylesheets/main.scss';
 
-class Example extends PureComponent {
+class AirsimVisualization extends PureComponent {
   state = {
     ...(!isMobile && this._loadLog(LOGS[0])),
     settings: {
@@ -50,6 +50,12 @@ class Example extends PureComponent {
   };
 
   _loadLog(logSettings) {
+    // TODO: Convert stream categories and primitive_types to lowercase:
+    // for(let stream in metadata.streams) {
+    //   metadata.streams[stream].category = metadata.streams[stream].category ? metadata.streams[stream].category.toLowerCase() : 'undefined';
+    //   metadata.streams[stream].primitive_type = metadata.streams[stream].primitive_type ? metadata.streams[stream].primitive_type.toLowerCase() : 'undefined';
+    // }
+    console.log("Loading log...");
     if (logSettings.xvizConfig) {
       setXVIZConfig(logSettings.xvizConfig);
     }
@@ -57,6 +63,8 @@ class Example extends PureComponent {
     const loader = new XVIZFileLoader({
       timingsFilePath: `${logSettings.path}/0-frame.json`,
       getFilePath: index => `${logSettings.path}/${index + 1}-frame.glb`,
+      // timingsFilePath: `${logSettings.path}/0-frame.json`,
+      // getFilePath: index => `${logSettings.path}/${index + 1}-frame.json`,
       worker: true,
       maxConcurrency: 4
     })
@@ -102,7 +110,7 @@ class Example extends PureComponent {
 
         <Toolbar settings={settings} onSettingsChange={this._onSettingsChange} />
 
-        <CameraPanel log={log} videoAspectRatio={selectedLog.videoAspectRatio} />
+        <CameraPanel log={log} videoAspectRatio={selectedLog.videoAspectRatio} selectedLogName={selectedLog.name} />
       </div>
     );
   }
@@ -113,7 +121,7 @@ document.body.appendChild(root);
 
 render(
   <ThemeProvider theme={UI_THEME}>
-    <Example />
+    <AirsimVisualization />
   </ThemeProvider>,
   root
 );

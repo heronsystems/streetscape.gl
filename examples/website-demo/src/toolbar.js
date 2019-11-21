@@ -121,16 +121,16 @@ export default class Toolbar extends PureComponent {
         >
           {this._renderViewButton(settings.viewMode, {
             tooltip: 'Camera',
-            position: Popover.LEFT,
+            position: Popover.RIGHT,
             onClick: noop
           })}
         </Popover>
-        <Tooltip content="Recenter Camera (R)" position={Popover.LEFT} style={TOOLTIP_STYLE}>
+        <Tooltip content="Recenter Camera (R)" position={Popover.RIGHT} style={TOOLTIP_STYLE}>
           <Button type={Button.MUTED} style={TOOLBAR_BUTTON_STYLE} onClick={this._resetView}>
             <i className="icon-recenter" />
           </Button>
         </Tooltip>
-        <Tooltip content="Get Info (I)" position={Popover.LEFT} style={TOOLTIP_STYLE}>
+        <Tooltip content="Get Info (I)" position={Popover.RIGHT} style={TOOLTIP_STYLE}>
           <Button
             type={Button.MUTED}
             style={TOOLBAR_BUTTON_STYLE}

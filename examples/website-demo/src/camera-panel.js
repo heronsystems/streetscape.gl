@@ -20,7 +20,8 @@
 
 /* global window */
 import React, {PureComponent} from 'react';
-import {XVIZPanel} from 'streetscape.gl';
+// import {XVIZPanel} from 'streetscape.gl';
+import {_XVIZVideo as XVIZVideo} from 'streetscape.gl';
 import {FloatPanel} from '@streetscape.gl/monochrome';
 
 import {XVIZ_PANEL_STYLE, FLOAT_PANEL_STYLE} from './custom-styles';
@@ -33,29 +34,29 @@ export default class CameraPanel extends PureComponent {
       x: window.innerWidth - 420,
       y: 20,
       width: 400,
-      height: 148,
+      height: 300 + TITLE_HEIGHT,
       minimized: false
     }
   };
 
   componentWillReceiveProps(nextProps) {
     const {panelState} = this.state;
-    if (this.props.videoAspectRatio !== nextProps.videoAspectRatio) {
+    if (this.props.videoAspectRatio !== nextProps.videoAspectRatio || this.props.selectedLogName !== nextProps.selectedLogName) {
       this.setState({
         panelState: {
           ...panelState,
-          height: panelState.width / nextProps.videoAspectRatio + TITLE_HEIGHT
+          height: nextProps.selectedLogName === 'KITTI-0005' ? 148 : panelState.width / nextProps.videoAspectRatio + TITLE_HEIGHT
         }
       });
     }
   }
 
   _onUpdate = panelState => {
-    const {videoAspectRatio} = this.props;
+    const {videoAspectRatio, selectedLogName} = this.props;
     this.setState({
       panelState: {
         ...panelState,
-        height: panelState.width / videoAspectRatio + TITLE_HEIGHT
+        height: selectedLogName === 'KITTI-0005' ? 148 : panelState.width / videoAspectRatio + TITLE_HEIGHT
       }
     });
   };
@@ -63,6 +64,27 @@ export default class CameraPanel extends PureComponent {
   render() {
     const {log} = this.props;
     const {panelState} = this.state;
+
+    let camerasArray = [];
+    if(this.props.selectedLogName === "KITTI-0005") {
+      camerasArray = ["/camera/image_02", "/camera/image_03"];
+    }
+    else if(this.props.selectedLogName === "nuTonomy-0006") {
+      camerasArray = ["/camera/cam_front"];
+    }
+    else {
+      camerasArray = [
+        "/camera/MainForwardCamera",
+        "/camera/NarrowForwardCamera",
+        "/camera/WideForwardCamera",
+        "/camera/ForwardLookingSideCamera_Right",
+        "/camera/ForwardLookingSideCamera_Left",
+        "/camera/RearwardLookingSideCamera_Right",
+        "/camera/RearwardLookingSideCamera_Left",
+        "/camera/RearViewCamera"
+      ];
+    }
+    const cameras = camerasArray;
 
     return (
       <FloatPanel
@@ -73,7 +95,8 @@ export default class CameraPanel extends PureComponent {
         onUpdate={this._onUpdate}
         style={FLOAT_PANEL_STYLE}
       >
-        <XVIZPanel log={log} name="Camera" style={XVIZ_PANEL_STYLE} />
+        {/* <XVIZPanel log={log} name="Camera" style={XVIZ_PANEL_STYLE} /> */}
+        <XVIZVideo log={log} cameras={cameras} style={XVIZ_PANEL_STYLE.video} />
       </FloatPanel>
     );
   }

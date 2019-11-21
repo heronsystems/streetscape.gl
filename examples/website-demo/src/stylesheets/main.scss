@@ -39,8 +39,8 @@ body {
 }
 #toolbar {
   position: fixed;
-  top: calc(50vh - 74px);
-  right: 0;
+  top: calc(18vh - 74px);
+  left: 368px;
   transform: translateY(-50%);
 }
 .mapboxgl-ctrl-logo {

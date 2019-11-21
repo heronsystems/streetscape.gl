@@ -35,6 +35,8 @@ import {
   VIEW_MODE
 } from 'streetscape.gl';
 import {Form} from '@streetscape.gl/monochrome';
+import {_XVIZMetric as XVIZMetric} from 'streetscape.gl';
+import {_XVIZVideo as XVIZVideo} from 'streetscape.gl';
 
 import {XVIZ_CONFIG, APP_SETTINGS, MAPBOX_TOKEN, MAP_STYLE, XVIZ_STYLE, CAR} from './constants';
 
@@ -74,9 +76,12 @@ class Example extends PureComponent {
     return (
       <div id="container">
         <div id="control-panel">
-          <XVIZPanel log={log} name="Metrics" />
+          {/* <XVIZPanel log={log} name="Metrics" /> */}
+          <XVIZMetric log={log} streams={["/vehicle/velocity"]} title={"Velocity"} description={"Metrics panel: velocity"} />
+          <XVIZMetric log={log} streams={["/vehicle/acceleration"]} title={"Acceleration"} description={"Metrics panel: acceleration"} />          
           <hr />
-          <XVIZPanel log={log} name="Camera" />
+          {/* <XVIZPanel log={log} name="Camera" /> */}
+          <XVIZVideo log={log} cameras={["/camera/image_02", "/camera/image_03"]} />
           <hr />
           <Form
             data={APP_SETTINGS}

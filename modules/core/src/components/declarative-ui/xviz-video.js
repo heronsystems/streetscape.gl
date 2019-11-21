@@ -84,8 +84,8 @@ class BaseComponent extends PureComponent {
         const type = streamsMetadata[streamName] && streamsMetadata[streamName].primitive_type;
         return type === 'IMAGE' || type === 'image'; // Support pre-1.0 lowercase value
       })
-      .filter(normalizeStreamFilter(cameras))
-      .sort();
+      .filter(normalizeStreamFilter(cameras));
+      // .sort();
     let {selectedStreamName} = this.state || {};
     if (!streamNames.includes(selectedStreamName)) {
       selectedStreamName = streamNames[0] || null;

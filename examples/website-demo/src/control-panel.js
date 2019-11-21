@@ -20,6 +20,7 @@
 
 import React, {PureComponent} from 'react';
 import {StreamSettingsPanel, XVIZPanel} from 'streetscape.gl';
+import {_XVIZMetric as XVIZMetric} from 'streetscape.gl';
 
 import {XVIZ_PANEL_STYLE, STREAM_SETTINGS_STYLE} from './custom-styles';
 import MetadataPanel from './metadata-panel';
@@ -43,17 +44,24 @@ export default class ControlPanel extends PureComponent {
 
       case 'charts':
         return (
-          <XVIZPanel
-            log={log}
-            name="Metrics"
-            style={XVIZ_PANEL_STYLE}
-            componentProps={{
-              metric: {getColor: '#ccc'}
-            }}
-          />
+          // <XVIZPanel
+          //   log={log}
+          //   name="Metrics"
+          //   style={XVIZ_PANEL_STYLE}
+          //   componentProps={{
+          //     metric: {getColor: '#ccc'}
+          //   }}
+          // />
+          <div>
+          {/* TODO: Dynamically get streams array */}
+          {/* TODO: Style component like other style */}
+            <XVIZMetric log={log} streams={["/vehicle/velocity"]} title={"Velocity"} description={"Metrics panel: velocity"} />
+            <XVIZMetric log={log} streams={["/vehicle/acceleration"]} title={"Acceleration"} description={"Metrics panel: acceleration"} />  
+            {/* <XVIZMetric log={log} streams={["/vehicle/calculated_acceleration"]} title={"Acceleration"} description={"Metrics panel: acceleration"} />  */}
+          </div>
         );
 
-      case 'info':
+      case 'logs':
         return <MetadataPanel log={log} selectedLog={selectedLog} onLogChange={onLogChange} />;
 
       case 'help':
@@ -95,7 +103,7 @@ export default class ControlPanel extends PureComponent {
           </div>
           {!isHelpOpen && (
             <div id="tabs">
-              {this._renderTab({id: 'info', description: 'Log Info'})}
+              {this._renderTab({id: 'logs', description: 'Log Info'})}
               {this._renderTab({id: 'streams', description: 'Stream Settings'})}
               {this._renderTab({id: 'charts', description: 'Charts'})}
             </div>
