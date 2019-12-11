@@ -22,7 +22,7 @@ import React, {PureComponent} from 'react';
 
 import {LogViewer, VIEW_MODE} from 'streetscape.gl';
 
-import {MAPBOX_TOKEN, MAP_STYLE, CAR} from './constants';
+import {MAPBOX_TOKEN, MAP_STYLE, CAR, DRONE} from './constants';
 import {XVIZ_STYLE, LOG_VIEWER_STYLE} from './custom-styles';
 
 const OBJECT_ICONS = {
@@ -77,7 +77,7 @@ export default class MapView extends PureComponent {
         log={log}
         mapboxApiAccessToken={MAPBOX_TOKEN}
         mapStyle={MAP_STYLE}
-        car={CAR}
+        car={DRONE}
         xvizStyles={XVIZ_STYLE}
         style={LOG_VIEWER_STYLE}
         showTooltip={settings.showTooltip}

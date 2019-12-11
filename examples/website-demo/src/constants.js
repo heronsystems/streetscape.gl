@@ -38,6 +38,14 @@ export const CAR = {
   color: [160, 160, 160]
 };
 
+export const DRONE = {
+  mesh: load('./assets/drone.obj', OBJLoader),
+  origin: [0, 0, 0],
+  scale: 0.009,
+  wireframe: true,
+  color: [160, 160, 160]
+};
+
 export const SETTINGS = {
   viewMode: {
     type: 'select',
